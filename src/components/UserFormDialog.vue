@@ -7,17 +7,17 @@ import Dialog from 'primevue/dialog'
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
 import Message from 'primevue/message'
-import type { UserFormData } from '@/types/user'
+import type { User } from '@/types/user'
 
 const props = defineProps<{
   visible: boolean
-  userData?: UserFormData | null
+  userData?: Omit<User, 'id'> | null
   isEditing: boolean
 }>()
 
 const emit = defineEmits<{
   'update:visible': [value: boolean]
-  save: [data: UserFormData]
+  save: [data: Omit<User, 'id'>]
 }>()
 
 const validationSchema = toTypedSchema(
@@ -32,7 +32,7 @@ const validationSchema = toTypedSchema(
   }),
 )
 
-const { defineField, handleSubmit, errors, resetForm, setValues, meta } = useForm<UserFormData>({
+const { defineField, handleSubmit, errors, resetForm, setValues, meta } = useForm<Omit<User, 'id'>>({
   validationSchema,
 })
 

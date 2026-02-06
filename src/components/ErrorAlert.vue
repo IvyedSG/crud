@@ -17,8 +17,8 @@ defineEmits<{
   >
     <i class="pi pi-exclamation-circle text-red-500 text-xl"></i>
     <div class="flex-1">
-      <p class="font-medium text-red-800 dark:text-red-200">Error al cargar usuarios</p>
-      <p class="text-sm text-red-600 dark:text-red-300">{{ error }}</p>
+      <p class="font-medium text-red-600 dark:text-red-600">Error al cargar usuarios</p>
+      <p class="text-sm text-red-600 dark:text-red-600">{{ error }}</p>
     </div>
     <Button
       label="Reintentar"

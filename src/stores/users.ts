@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { User, UserFormData } from '@/types/user'
+import type { User } from '@/types/user'
 
 const API_URL = 'https://jsonplaceholder.typicode.com/users'
 
@@ -20,7 +20,8 @@ export const useUserStore = defineStore('users', () => {
     try {
       const response = await fetch(API_URL)
       if (!response.ok) throw new Error('Error al obtener usuarios')
-      users.value = await response.json()
+      const data: User[] = await response.json()
+      users.value = data
     } catch (err) {
       error.value = err instanceof Error ? err.message : 'Error desconocido'
     } finally {
@@ -28,31 +29,15 @@ export const useUserStore = defineStore('users', () => {
     }
   }
 
-  function addUser(formData: UserFormData) {
+  function addUser(formData: Omit<User, 'id'>) {
     const newUser: User = {
       id: nextId.value,
-      name: formData.name,
-      username: formData.username,
-      email: formData.email,
-      phone: formData.phone,
-      address: {
-        street: '',
-        suite: '',
-        city: '',
-        zipcode: '',
-        geo: { lat: '0', lng: '0' },
-      },
-      website: '',
-      company: {
-        name: '',
-        catchPhrase: '',
-        bs: '',
-      },
+      ...formData,
     }
     users.value.push(newUser)
   }
 
-  function updateUser(id: number, formData: UserFormData) {
+  function updateUser(id: number, formData: Omit<User, 'id'>) {
     const user = users.value.find((u) => u.id === id)
     if (user) {
       user.name = formData.name

@@ -10,7 +10,7 @@ import DeleteConfirmDialog from '@/components/DeleteConfirmDialog.vue'
 import ErrorAlert from '@/components/ErrorAlert.vue'
 import { useUserStore } from '@/stores/users'
 import { useDeleteConfirm } from '@/composables/useDeleteConfirm'
-import type { User, UserFormData } from '@/types/user'
+import type { User } from '@/types/user'
 
 const userStore = useUserStore()
 const { users, loading, error } = storeToRefs(userStore)
@@ -20,7 +20,7 @@ const { showDeleteConfirm } = useDeleteConfirm()
 
 const showFormDialog = ref(false)
 const isEditing = ref(false)
-const editingUser = ref<UserFormData | null>(null)
+const editingUser = ref<Omit<User, 'id'> | null>(null)
 const editingUserId = ref<number | null>(null)
 
 onMounted(() => {
@@ -46,7 +46,7 @@ function openEditDialog(user: User) {
   showFormDialog.value = true
 }
 
-function handleSave(formData: UserFormData) {
+function handleSave(formData: Omit<User, 'id'>) {
   if (isEditing.value && editingUserId.value !== null) {
     userStore.updateUser(editingUserId.value, formData)
     toast.add({
