@@ -1,48 +1,67 @@
-# crud
+# 🚀 CRUD de Usuarios - Vue 3 + PrimeVue
 
-This template should help get you started developing with Vue 3 in Vite.
+Aplicación web para gestionar usuarios consumiendo la API pública de [JSONPlaceholder](https://jsonplaceholder.typicode.com/users). Implementa operaciones CRUD completas (Crear, Leer, Actualizar, Eliminar) con almacenamiento local y una interfaz moderna.
 
-## Recommended IDE Setup
+## 🛠️ Tecnologías
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **[Vue 3](https://vuejs.org/)** - Framework progresivo (Composition API)
+- **[TypeScript](https://www.typescriptlang.org/)** - Superset tipado de JavaScript
+- **[Pinia](https://pinia.vuejs.org/)** - Gestión de estado centralizado
+- **[PrimeVue 4](https://primevue.org/)** - Biblioteca de componentes UI
+- **[Tailwind CSS v4](https://tailwindcss.com/)** - Framework CSS utility-first
+- **[VeeValidate](https://vee-validate.logaretm.com/)** - Validación de formularios
+- **[Zod](https://zod.dev/)** - Validación de esquemas TypeScript-first
+- **[Vue Router](https://router.vuejs.org/)** - Enrutamiento oficial de Vue
+- **[Vite](https://vitejs.dev/)** - Build tool ultrarrápido
 
-## Recommended Browser Setup
+## 📋 Requisitos
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Node.js `^20.19.0 || >=22.12.0`
+- Bun (recomendado) o npm/pnpm/yarn
 
-## Type Support for `.vue` Imports in TS
+## 🚀 Instalación
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+```bash
+# Clonar el repositorio
+git clone https://github.com/IvyedSG/crud
+cd crud
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-bun install
+# Instalar dependencias
+npm/bun install
+# o npm install
 ```
 
-### Compile and Hot-Reload for Development
+## 💻 Uso
 
-```sh
-bun dev
+### Desarrollo
+
+```bash
+npm/bun run dev
+# La aplicación estará disponible en http://localhost:5173
 ```
 
-### Type-Check, Compile and Minify for Production
 
-```sh
-bun run build
+## 📁 Estructura del Proyecto
+
 ```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-bun lint
+src/
+├── components/          # Componentes reutilizables
+│   ├── DeleteConfirmDialog.vue   # Dialog de confirmación
+│   ├── ErrorAlert.vue             # Alerta de errores
+│   ├── UserFormDialog.vue         # Modal crear/editar
+│   └── UserTable.vue              # Tabla de usuarios
+├── composables/         # Lógica compartida
+│   └── useDeleteConfirm.ts        # Composable para eliminar
+├── stores/              # Estado global (Pinia)
+│   └── users.ts                   # Store de usuarios
+├── types/               # Tipos TypeScript
+│   └── user.ts                    # Tipos User y UserFormData
+├── views/               # Vistas principales
+│   └── UsersView.vue              # Vista principal
+├── router/              # Configuración de rutas
+│   └── index.ts
+├── assets/              # Recursos estáticos
+│   └── main.css
+├── App.vue              # Componente raíz
+└── main.ts              # Punto de entrada
 ```
